@@ -6,11 +6,10 @@ spec:
   selector:
     app: flask-app
   ports:
-    - protocol: "TCP"
-      port: 6000
-      targetPort: 5000
-      nodePort: 30000
-  type: LoadBalancer
+    - name: http
+      port: 8080
+      targetPort: http
+  type: ClusterIP
 
 ---
 apiVersion: apps/v1
@@ -33,4 +32,16 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
-
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-flask
+spec:
+  rules:
+    http:
+      paths:
+      # Default Path(/)
+      - backend:
+          serviceName: flask-service
+          servicePort: http
