@@ -54,3 +54,25 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
           repository: ${{ secrets.DOCKER_USERNAME }}/hello-flask
           tags: ${{ github.sha }}, latest
+      - name: build example and deploy to minikube
+        uses: actions/checkout@v2
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
+      - name: Try the cluster !
+        run: kubectl get pods -A
+      - name: Build image
+        run: |
+          export SHELL=/bin/bash
+          eval $(minikube -p minikube docker-env)
+          docker build -f ./Dockerfile -t camchil/hello-flask .
+          echo -n "verifying images:"
+          docker images        
+      - name: Deploy to minikube
+        run:
+          kubectl apply -f deploy-to-deploy.yaml
+      - name: Test service URLs
+        run: |
+          minikube service list
+          minikube service hello-flask --url
+          echo "------------------opening the service------------------"
+          curl $(minikube service hello-flask --url) 
