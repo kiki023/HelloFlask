@@ -1,15 +1,17 @@
-e: flask-test-service
-spec:
-    selector:
-          app: fapiVersion: v1
+apiVersion: apps/v1
 kind: Service
 metadata:
-  namlask-test-app
+  name: flask-svc
+spec:
+  selector: 
+    matchLabels:
+      app: flask-test-app
   ports:
     - protocol: "TCP"
       port: 6000
       targetPort: 5000
   type: LoadBalancer
+  
 
 ---
 apiVersion: apps/v1
