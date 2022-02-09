@@ -1,0 +1,6 @@
+<dependency>
+      <groupId>org.sonarsource.python</groupId>
+      <artifactId>python-checks-testkit</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+  </dependency>
