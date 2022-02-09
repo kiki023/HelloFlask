@@ -73,6 +73,6 @@ jobs:
       - name: Test service URLs
         run: |
           minikube service list
-          minikube service hello-flask --url
+          minikube service flask-test-service --url
           echo "------------------opening the service------------------"
-          curl $(minikube service hello-flask --url) 
+          curl $(minikube service flask-test-service --url) 
