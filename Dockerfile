@@ -3,7 +3,7 @@ RUN mkdir /app
 WORKDIR /app/
 ADD . /app/
 RUN pip freeze > requirements.txt
-COPY requirements.txt /tmp/requirements.txt
+//COPY requirements.txt /tmp/requirements.txt
 //RUN python3 -m pip install -r /tmp/requirements.txt
-RUN pip install -r requirements.txt
+//RUN pip install -r requirements.txt
 CMD ["python", "/app/app.py"]
