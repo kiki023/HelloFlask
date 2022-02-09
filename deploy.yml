@@ -9,7 +9,7 @@ spec:
     - protocol: "TCP"
       port: 6000
       targetPort: 5000
-      nodePort: 7000
+      nodePort: 30000
   type: LoadBalancer
 
 ---
@@ -20,7 +20,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: flask-test-app
+      app: flask-app
   replicas: 5
   template:
     metadata:
