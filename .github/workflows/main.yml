@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: main
+    branches: [main]
 
 jobs:
   build:
@@ -10,23 +10,14 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
-     # - uses: actions/checkout@v2
-      
-     # - name: SonarQube Scan
-      #  uses: sonarsource/sonarqube-scan-action@master
-       # env:
-        #  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-         # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      
-      
-      
-      
+      - uses: actions/checkout@v2
+
       # Set up Python 3.6 environment
-      - name: Set up Python 3.7
+      - name: Set up Python 3.6
         uses: actions/setup-python@v1
         with:
-          python-version: "3.7"
-          
+          python-version: "3.6"
+
       - name: Get pip cache dir
         id: pip-cache
         run: |
@@ -36,19 +27,19 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/app.py') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-          
+      
+      # Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt 
-    
-        # Run our unit tests    
+          pip install -r requirements.txt
+      # Run our unit tests
       - name: Run unit tests
         run: |
-          python test_app.py
+          python test_application.py
           
       - name: Login to Docker Hub
         uses: docker/login-action@v1
