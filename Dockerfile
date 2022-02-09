@@ -4,3 +4,4 @@ WORKDIR /app/
 ADD . /app/
 RUN pip freeze > requirements.txt
 CMD ["python", "/app/app.py"]
+EXPOSE 30586
