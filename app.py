@@ -1,7 +1,5 @@
-from flask import Flask, jsonify
-app = Flask(__name__)
-@app.route("/")
-def hello():
-    return jsonify({"Message": "How you doin'"})
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+from application import application
+with application.test_client() as c:
+    response = c.get('/')
+    assert response.data == b'Hello World!'
+    assert response.status_code == 200)
