@@ -54,7 +54,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
           repository: ${{ secrets.DOCKER_USERNAME }}/hello-flask
           tags: ${{ github.sha }}, latest
-      - name: build example and deploy to minikube
+      - name: build and deploy to minikube
         uses: actions/checkout@v2
       - name: Start minikube
         uses: medyagh/setup-minikube@master
