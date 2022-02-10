@@ -7,7 +7,7 @@ metadata:
 spec: 
   type: LoadBalancer 
   ports: 
-  //- protocol: TCP 
+  - protocol: TCP 
     port: 80 
     targetPort: 5000
   selector: 
@@ -34,21 +34,21 @@ spec:
           ports:
             - containerPort: 5000
 ---
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: ingress-flask
-  annotations:
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: ingress-flask
+ # annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-spec:
-  rules:
-    http:
-      paths:
-    - path: /hello 
-      pathType: 
-      Prefix backend:
+#spec:
+#  rules:
+ #   http:
+ #     paths:
+ #   - path: /hello 
+  #    pathType: 
+ #     Prefix backend:
       # Default Path(/)
-      backend:
-        serviceName: {{ template "fullname" $ }}-srv
-        servicePort: 80
+    #  backend:
+      #  serviceName: {{ template "fullname" $ }}-srv
+     #   servicePort: 80
 
