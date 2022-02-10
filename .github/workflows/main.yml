@@ -68,7 +68,8 @@ jobs:
           echo -n "verifying images:"
           docker images        
       - name: Deploy to minikube
-        run:
+        run: |
+          minikube addons enable ingress
           kubectl apply -f deploy.yml --validate=false
       - name: Test service URLs
         run: |
