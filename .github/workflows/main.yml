@@ -76,4 +76,4 @@ jobs:
           minikube service list
           minikube service flask-service --url
           echo "------------------opening the service------------------"
-          curl $(minikube service flask-service --url) 
+         # curl $(minikube service flask-service --url) 
