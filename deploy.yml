@@ -44,6 +44,6 @@ spec:
     http:
       paths:
       # Default Path(/)
-      - backend:
-          serviceName: flask-service
-          servicePort: http
+      backend:
+        serviceName: {{ template "fullname" $ }}-srv
+        servicePort: http
