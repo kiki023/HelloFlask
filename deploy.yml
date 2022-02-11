@@ -43,7 +43,8 @@ spec:
     spec:
       containers:
         - name: flask-app
-          image: ${{ secrets.DOCKER_USERNAME }}/hello-flask
+          #image: ${{ secrets.DOCKER_USERNAME }}/hello-flask
+          image: camchi/hello-flask
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
