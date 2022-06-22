@@ -71,7 +71,7 @@ jobs:
               
       - name: Deploy to Amazon Eks
         run: |
-          kubectl apply -f test.yml -n test
+          kubectl apply -f deploy.yml -n test
       #- name: Sleep for 120 seconds
       #  uses: jakejarvis/wait-action@master
       #  with:
